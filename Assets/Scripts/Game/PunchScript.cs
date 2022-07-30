@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PunchScript : MonoBehaviour
 {
+    public int damage = 1;
     private bool isPunching;
 
     private void Start() {
@@ -11,8 +12,12 @@ public class PunchScript : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision other) {
-        if (isPunching)
-            Debug.Log("HIT!");
+        if (isPunching) {
+            if (other.gameObject.layer == LayerMask.NameToLayer("People")) {
+                other.transform.parent.GetComponent<PersonScript>().hit(damage, true);
+                Debug.Log("HIT!");
+            }
+        }
     }
 
     public void startPunching() {
