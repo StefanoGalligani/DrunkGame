@@ -5,12 +5,18 @@ using UnityEngine;
 public class PunchScript : MonoBehaviour
 {
     public int damage = 1;
+    public bool autoAlert;
     private bool isPunching;
     private List<GameObject> obstacles;
 
     private void Start() {
+        SetAlerted(autoAlert);
         obstacles = new List<GameObject>();
         isPunching = false;
+    }
+
+    public void SetAlerted(bool a) {
+        GetComponent<Animator>().SetBool("Alerted", a);
     }
 
     private void OnCollisionEnter(Collision other) {
@@ -19,13 +25,12 @@ public class PunchScript : MonoBehaviour
             if (other.gameObject.layer == LayerMask.NameToLayer("People")) {
                 if (other.transform.parent.GetComponent<PersonScript>()) {
                     other.transform.parent.GetComponent<PersonScript>().hit(damage, true);
-                    Debug.Log("HIT!");
+                    other.transform.parent.GetComponent<PersonScript>().harassed(transform.parent.parent.gameObject);
                 }
             }
             stopPunching();
         } else if (!obstacles.Contains(other.gameObject)){
             obstacles.Add(other.gameObject);
-            Debug.Log("added " + other.gameObject.name);
         }
     }
 
@@ -40,7 +45,6 @@ public class PunchScript : MonoBehaviour
     }
 
     public void startPunching() {
-        Debug.Log("trying to punch: " + isPunching + ", " + obstacles.Count);
         if (!isPunching) {
             gameObject.layer = LayerMask.NameToLayer("MovingPunch");
             isPunching = true;

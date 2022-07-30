@@ -2,30 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PersonScript : MonoBehaviour
+public class DeathState : StateMachineBehaviour
 {
-    public int maxHealth = 20;
-    int health;
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        Transform person = animator.transform;
+        Transform head = person.GetChild(0);
+        Transform body = person.GetChild(1);
 
-    private void Start() {
-        health = maxHealth;
-    }
-
-    public void hit(int damage, bool head) {
-        health -= damage;
-        if (head) health -= damage;
-        if (health <= 0) death();
-    }
-
-    public void heal(int points) {
-        health+=points;
-    }
-
-    private void death() {
-        Transform head = transform.GetChild(0);
-        Transform body = transform.GetChild(1);
-
-        foreach (PunchScript punch in GetComponentsInChildren<PunchScript>())
+        foreach (PunchScript punch in person.GetComponentsInChildren<PunchScript>())
         {
             Destroy(punch.gameObject);
         }
@@ -40,6 +26,7 @@ public class PersonScript : MonoBehaviour
         body.GetComponent<Rigidbody>().useGravity = true;
         body.SetParent(null);
 
-        Destroy(this.gameObject);
+        Destroy(person.gameObject);
     }
+
 }
