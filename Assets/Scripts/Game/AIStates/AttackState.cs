@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class AttackState : StateMachineBehaviour
 {
-    PersonScript person;
+    PersonOther person;
     float timer = -1;
     Transform target;
 
@@ -13,7 +13,7 @@ public class AttackState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.GetComponent<NavMeshAgent>().isStopped = true;
-        person = animator.GetComponent<PersonScript>();
+        person = animator.GetComponent<PersonOther>();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -22,6 +22,9 @@ public class AttackState : StateMachineBehaviour
         if (timer <= 0) {
             target = person.getNextTarget().transform;
             timer = 1;
+            if (target != null) {
+                person.GetComponentInChildren<PunchScript>().startPunching();
+            }
         }
         if (target != null) {
             animator.transform.LookAt(target.position);

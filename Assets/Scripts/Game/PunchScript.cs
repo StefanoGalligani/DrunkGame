@@ -23,10 +23,7 @@ public class PunchScript : MonoBehaviour
         if (transform.IsChildOf(other.transform)) return;
         if (isPunching) {
             if (other.gameObject.layer == LayerMask.NameToLayer("People")) {
-                if (other.transform.parent.GetComponent<PersonScript>()) {
-                    other.transform.parent.GetComponent<PersonScript>().hit(damage, true);
-                    other.transform.parent.GetComponent<PersonScript>().harassed(transform.parent.parent.gameObject);
-                }
+                other.transform.parent.GetComponent<PersonScript>().hit(damage, true, transform.parent.parent.gameObject);
             }
             stopPunching();
         } else if (!obstacles.Contains(other.gameObject)){

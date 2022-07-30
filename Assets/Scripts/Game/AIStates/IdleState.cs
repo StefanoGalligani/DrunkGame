@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class IdleState : StateMachineBehaviour
 {
-    PersonScript person;
+    PersonOther person;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        person = animator.GetComponent<PersonScript>();
+        person = animator.GetComponent<PersonOther>();
         
         foreach (PunchScript punch in person.GetComponentsInChildren<PunchScript>())
         {

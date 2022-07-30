@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class ChaseState : StateMachineBehaviour
 {
     NavMeshAgent agent;
-    PersonScript person;
+    PersonOther person;
     float timer = -1;
     Transform target;
 
@@ -14,7 +14,7 @@ public class ChaseState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         agent = animator.GetComponent<NavMeshAgent>();
-        person = animator.GetComponent<PersonScript>();
+        person = animator.GetComponent<PersonOther>();
         agent.isStopped = false;
         
         foreach (PunchScript punch in person.GetComponentsInChildren<PunchScript>())
