@@ -645,6 +645,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 797118844065414644, guid: 3e1a121a5f271c3499b742ea5d22c99a,
+        type: 3}
+      propertyPath: m_VolumeTrigger
+      value: 
+      objectReference: {fileID: 832575519}
+    - target: {fileID: 797118844338531069, guid: 3e1a121a5f271c3499b742ea5d22c99a,
+        type: 3}
+      propertyPath: m_VolumeTrigger
+      value: 
+      objectReference: {fileID: 832575519}
+    - target: {fileID: 797118844731722064, guid: 3e1a121a5f271c3499b742ea5d22c99a,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 797118844731722064, guid: 3e1a121a5f271c3499b742ea5d22c99a,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 797118845652914534, guid: 3e1a121a5f271c3499b742ea5d22c99a,
         type: 3}
       propertyPath: m_RootOrder
@@ -1224,6 +1244,7 @@ GameObject:
   - component: {fileID: 5448605689397010253}
   - component: {fileID: 5448605689397010240}
   - component: {fileID: 5448605689397010256}
+  - component: {fileID: 5448605689397010257}
   m_Layer: 3
   m_Name: Person
   m_TagString: Untagged
@@ -1244,6 +1265,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
+--- !u!95 &5448605689397010257
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5448605689397010255}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 61d4488a8bbf2a24e97e32beaecc3536, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!135 &5448605689844421601
 SphereCollider:
   m_ObjectHideFlags: 0
