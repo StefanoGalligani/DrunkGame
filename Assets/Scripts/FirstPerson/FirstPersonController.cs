@@ -35,9 +35,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private CharacterController m_CharacterController;
         private CollisionFlags m_CollisionFlags;
         private bool m_PreviouslyGrounded;
-        private Vector3 m_OriginalHeadPosition;
-        private Vector3 m_OriginalCameraPosition;
-        private Vector3 m_OriginalCameraPosition2;
         private float m_StepCycle;
         private float m_NextStep;
         private bool m_Jumping;
@@ -50,9 +47,6 @@ namespace UnityStandardAssets.Characters.FirstPerson
             head = transform.GetChild(0);
             m_Camera = GetComponentsInChildren<Camera>()[0];
             m_Camera2 = GetComponentsInChildren<Camera>()[1];
-            m_OriginalHeadPosition = head.transform.localPosition;
-            m_OriginalCameraPosition = m_Camera.transform.localPosition;
-            m_OriginalCameraPosition2 = m_Camera2.transform.localPosition;
             m_FovKick.Setup(m_Camera, m_Camera2);
             m_HeadBob.Setup(head, m_StepInterval);
             m_StepCycle = 0f;
