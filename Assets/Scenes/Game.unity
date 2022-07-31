@@ -1592,11 +1592,37 @@ PrefabInstance:
       propertyPath: tooltipText
       value: 
       objectReference: {fileID: 586661793}
+    - target: {fileID: 1515437526507368476, guid: 3e1a121a5f271c3499b742ea5d22c99a,
+        type: 3}
+      propertyPath: movementSettings.ForwardSpeed
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1515437526507368479, guid: 3e1a121a5f271c3499b742ea5d22c99a,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: aa47257a8ee6f084fa9849b5b6a4936b,
+        type: 2}
+    - target: {fileID: 6958331511664627962, guid: 3e1a121a5f271c3499b742ea5d22c99a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6958331511802537121, guid: 3e1a121a5f271c3499b742ea5d22c99a,
         type: 3}
       propertyPath: m_VolumeTrigger
       value: 
       objectReference: {fileID: 832575519}
+    - target: {fileID: 6958331511916594321, guid: 3e1a121a5f271c3499b742ea5d22c99a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6958331511916594326, guid: 3e1a121a5f271c3499b742ea5d22c99a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6958331512076710824, guid: 3e1a121a5f271c3499b742ea5d22c99a,
         type: 3}
       propertyPath: m_VolumeTrigger
