@@ -23,7 +23,7 @@ public class AttackState : StateMachineBehaviour
             target = person.getNextTarget().transform;
             timer = 1;
             if (target != null) {
-                person.GetComponentInChildren<PunchScript>().startPunching();
+                person.GetComponentInChildren<PunchScript>().startPunching(0);
             }
         }
         if (target != null) {

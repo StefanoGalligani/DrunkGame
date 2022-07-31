@@ -59,6 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltipText: {fileID: 0}
+  beerHealth: 7
 --- !u!1 &96130669719339237
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,8 +241,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c44d709198e564f8211cf8bd2d8e4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  minDamage: 1
+  maxDamage: 3
   autoAlert: 1
+  minDashPower: 10
+  maxDashPower: 30
 --- !u!1 &3247756876955621733
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,8 +344,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c44d709198e564f8211cf8bd2d8e4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  minDamage: 1
+  maxDamage: 3
   autoAlert: 1
+  minDashPower: 10
+  maxDashPower: 30
 --- !u!1 &6958331511664627716
 GameObject:
   m_ObjectHideFlags: 0
@@ -950,8 +957,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e431ccd2c05154bac9e4ed06ffa58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  punchLeft: {fileID: 7754946741248127902}
-  punchRight: {fileID: 7754946740460710361}
+  punches:
+  - {fileID: 7754946741248127902}
+  - {fileID: 7754946740460710361}
+  maxHoldTime: 3
+  cooldownTime: 1.5
 --- !u!114 &7609910513040895540
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -967,10 +977,12 @@ MonoBehaviour:
   maxHealth: 20
   damagedImg: {fileID: 0}
   lowHealthImg: {fileID: 0}
-  maxAlcoholTime: 30
-  maxAngle: 30
-  oscillationSpeed: 5
-  alcoholPerBeer: 5
+  maxAlcoholTime: 20
+  maxAngle: 20
+  oscillationSpeed: 4.5
+  oscillationMagnitudeMultiplier: 0.4
+  alcoholPerBeer: 4
+  syncSpeed: 3
 --- !u!114 &1515437526507368476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1038,7 +1050,7 @@ MonoBehaviour:
     groundCheckDistance: 0.01
     stickToGroundHelperDistance: 0.5
     slowDownRate: 20
-    airControl: 0
+    airControl: 1
     shellOffset: 0
 --- !u!54 &6958331512379213872
 Rigidbody:

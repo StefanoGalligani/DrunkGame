@@ -48,14 +48,14 @@ public class PersonPlayer : PersonScript
         cam2.localRotation = Quaternion.Euler(0, targetRot, 0);
     }
     
-    public override void hit(int damage, bool head, GameObject attacker) {
+    public override void hit(float damage, bool head, GameObject attacker) {
         if (head) damage *= 2;
         health -= damage;
         if (health <=0) Debug.Log("Dead");
         StartCoroutine(damageUIRoutine());
     }
 
-    public override void heal(int points) {
+    public override void heal(float points) {
         health = Mathf.Min(health+points, maxHealth);
         changeAlpha(lowHealthImg, .9f - ((float)health/maxHealth));
         targetAlcoholLevel = Mathf.Min(targetAlcoholLevel + alcoholPerBeer, maxAlcoholTime);

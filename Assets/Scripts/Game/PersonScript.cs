@@ -4,12 +4,12 @@ using UnityEngine;
 
 public abstract class PersonScript : MonoBehaviour
 {
-    public int maxHealth = 20;
-    protected int health;
+    public float maxHealth = 20;
+    protected float health;
 
-    public abstract void hit(int damage, bool head, GameObject attacker);
+    public abstract void hit(float damage, bool head, GameObject attacker);
 
-    public abstract void heal(int points);
+    public abstract void heal(float points);
 
     public abstract void dashAfterPunch(float magnitude);
 }

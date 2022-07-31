@@ -13,16 +13,17 @@ public class PersonOther : PersonScript
         targets = new List<GameObject>();
     }
 
-    public override void hit(int damage, bool head, GameObject attacker) {
+    public override void hit(float damage, bool head, GameObject attacker) {
         if (head) damage *= 2;
         health -= damage;
-        anim.SetInteger("Health", health);
+        Debug.Log("Current health: " + health);
+        anim.SetFloat("Health", health);
         harassed(attacker);
     }
 
-    public override void heal(int points) {
+    public override void heal(float points) {
         health = Mathf.Min(health+points, maxHealth);
-        anim.SetInteger("Health", health);
+        anim.SetFloat("Health", health);
     }
 
     public override void dashAfterPunch(float magnitude) {

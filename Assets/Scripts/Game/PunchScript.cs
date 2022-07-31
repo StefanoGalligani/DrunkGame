@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class PunchScript : MonoBehaviour
 {
-    public int damage = 1;
+    public float minDamage = 1;
+    public float maxDamage = 3;
     public bool autoAlert;
+    public float minDashPower = 4;
+    public float maxDashPower = 15;
+
     private bool isPunching;
+    private float currentDamagePerc;
 
     private void Start() {
         SetAlerted(autoAlert);
@@ -21,7 +26,8 @@ public class PunchScript : MonoBehaviour
         if (transform.IsChildOf(other.transform)) return;
         if (isPunching) {
             if (other.gameObject.layer == LayerMask.NameToLayer("People")) {
-                other.transform.parent.GetComponent<PersonScript>().hit(damage, other.gameObject.name == "Head", transform.parent.parent.gameObject);
+                other.transform.parent.GetComponent<PersonScript>().hit(Mathf.Lerp(minDamage, maxDamage, currentDamagePerc),
+                    other.gameObject.name == "Head", transform.parent.parent.gameObject);
             }
             stopPunching();
         }
@@ -45,11 +51,12 @@ public class PunchScript : MonoBehaviour
         return true;
     }
 
-    public void startPunching() {
+    public void startPunching(float damagePerc) {
         if (!isPunching) {
-            transform.parent.parent.GetComponent<PersonScript>().dashAfterPunch(10);
+            transform.parent.parent.GetComponent<PersonScript>().dashAfterPunch(Mathf.Lerp(minDashPower, maxDashPower, damagePerc));
             gameObject.layer = LayerMask.NameToLayer("MovingPunch");
             isPunching = true;
+            currentDamagePerc = damagePerc;
             GetComponent<Animator>().SetBool("Punching", true);
             
             if (!canPunch())
