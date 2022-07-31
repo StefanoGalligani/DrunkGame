@@ -16,7 +16,6 @@ public class PersonOther : PersonScript
     public override void hit(float damage, bool head, GameObject attacker) {
         if (head) damage *= 2;
         health -= damage;
-        Debug.Log("Current health: " + health);
         anim.SetFloat("Health", health);
         harassed(attacker);
     }
@@ -33,11 +32,11 @@ public class PersonOther : PersonScript
         StartCoroutine(stopRigidbody(.2f));
     }
 
-    public override void push(float pushPower, bool actualHit) {
+    public override void push(float pushPower, bool actualHit, Vector3 direction) {
         if(!actualHit) pushPower /= 2;
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        rb.AddForce(-transform.forward * pushPower + Vector3.up * 10, ForceMode.Impulse);
+        rb.AddForce(direction * pushPower + Vector3.up * 10, ForceMode.Impulse);
         StartCoroutine(stopRigidbody(.2f));
     }
 

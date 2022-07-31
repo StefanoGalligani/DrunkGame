@@ -30,10 +30,12 @@ public class PunchScript : MonoBehaviour
             if (other.gameObject.layer == LayerMask.NameToLayer("People")) {
                 other.transform.parent.GetComponent<PersonScript>().hit(Mathf.Lerp(minDamage, maxDamage, currentDamagePerc),
                     other.gameObject.name == "Head", transform.parent.parent.gameObject);
-                other.transform.parent.GetComponent<PersonScript>().push(Mathf.Lerp(minPushPower, maxPushPower, currentDamagePerc), true);
+                other.transform.parent.GetComponent<PersonScript>().push(Mathf.Lerp(minPushPower, maxPushPower, currentDamagePerc)
+                    , true, transform.parent.parent.forward);
             }
             if (other.gameObject.layer == LayerMask.NameToLayer("Punch")) {
-                other.transform.parent.parent.GetComponent<PersonScript>().push(Mathf.Lerp(minPushPower, maxPushPower, currentDamagePerc), false);
+                other.transform.parent.parent.GetComponent<PersonScript>().push(Mathf.Lerp(minPushPower, maxPushPower, currentDamagePerc)
+                , false, transform.parent.parent.forward);
             }
             stopPunching();
         }
@@ -44,10 +46,28 @@ public class PunchScript : MonoBehaviour
         stopPunching();
     }
 
+    public void startPunching(float damagePerc) {
+        if (!isPunching) {
+            transform.parent.parent.GetComponent<PersonScript>().dashAfterPunch(Mathf.Lerp(minDashPower, maxDashPower, damagePerc));
+            gameObject.layer = LayerMask.NameToLayer("MovingPunch");
+            isPunching = true;
+            currentDamagePerc = damagePerc;
+            GetComponent<Animator>().SetBool("Punching", true);
+            
+            if (!canPunch()) {
+                StartCoroutine(suddenStop());
+                PersonScript personColliding = findPersonColliding();
+                if (personColliding != null) {
+                    personColliding.hit(0, false, transform.parent.parent.gameObject);
+                }
+            }
+        }
+    }
+
     private bool canPunch() {
         Vector3 localCenter = GetComponent<SphereCollider>().center;
         Vector3 center = transform.position + new Vector3(localCenter.x * transform.localScale.x, localCenter.y * transform.localScale.y, localCenter.z * transform.localScale.z);
-        float radius = GetComponent<SphereCollider>().radius * transform.localScale.z;
+        float radius = GetComponent<SphereCollider>().radius * transform.localScale.z / 2;
         Collider[] overlaps = Physics.OverlapSphere(center, radius);
 
         foreach (Collider overlap in overlaps)
@@ -57,17 +77,22 @@ public class PunchScript : MonoBehaviour
         return true;
     }
 
-    public void startPunching(float damagePerc) {
-        if (!isPunching) {
-            transform.parent.parent.GetComponent<PersonScript>().dashAfterPunch(Mathf.Lerp(minDashPower, maxDashPower, damagePerc));
-            gameObject.layer = LayerMask.NameToLayer("MovingPunch");
-            isPunching = true;
-            currentDamagePerc = damagePerc;
-            GetComponent<Animator>().SetBool("Punching", true);
-            
-            if (!canPunch())
-                StartCoroutine(suddenStop());
+    private PersonScript findPersonColliding() {
+        Vector3 localCenter = GetComponent<SphereCollider>().center;
+        Vector3 center = transform.position + new Vector3(localCenter.x * transform.localScale.x, localCenter.y * transform.localScale.y, localCenter.z * transform.localScale.z);
+        float radius = GetComponent<SphereCollider>().radius * transform.localScale.z;
+        Collider[] overlaps = Physics.OverlapSphere(center, radius);
+
+        foreach (Collider overlap in overlaps)
+        {
+            if (!transform.IsChildOf(overlap.transform) && !overlap.isTrigger) {
+                if (overlap.gameObject.layer == LayerMask.NameToLayer("People"))
+                    return overlap.transform.parent.GetComponent<PersonScript>();
+                if (overlap.gameObject.layer == LayerMask.NameToLayer("Punch"))
+                    return overlap.transform.parent.parent.GetComponent<PersonScript>();
+            }
         }
+        return null;
     }
 
     public void stopPunching() {

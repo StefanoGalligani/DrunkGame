@@ -13,5 +13,5 @@ public abstract class PersonScript : MonoBehaviour
 
     public abstract void dashAfterPunch(float magnitude);
 
-    public abstract void push(float pushPower, bool actualHit);
+    public abstract void push(float pushPower, bool actualHit, Vector3 direction);
 }
