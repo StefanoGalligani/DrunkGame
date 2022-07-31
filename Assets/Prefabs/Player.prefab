@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05af379ead696f044920156361d9ac77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 2
+  maxHealth: 20
 --- !u!54 &797118845652914533
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1097,7 +1097,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.08
-  m_Center: {x: 0, y: 0.03, z: 0}
+  m_Center: {x: 0, y: 0.03, z: 0.03}
 --- !u!54 &1778821834
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1280,7 +1280,7 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.08
-  m_Center: {x: 0, y: 0.03, z: 0}
+  m_Center: {x: 0, y: 0.03, z: 0.03}
 --- !u!54 &991408267
 Rigidbody:
   m_ObjectHideFlags: 0
