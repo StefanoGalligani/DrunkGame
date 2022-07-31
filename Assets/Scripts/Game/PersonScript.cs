@@ -10,4 +10,6 @@ public abstract class PersonScript : MonoBehaviour
     public abstract void hit(int damage, bool head, GameObject attacker);
 
     public abstract void heal(int points);
+
+    public abstract void dashAfterPunch(float magnitude);
 }

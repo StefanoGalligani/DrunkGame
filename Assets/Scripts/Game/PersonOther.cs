@@ -25,6 +25,19 @@ public class PersonOther : PersonScript
         anim.SetInteger("Health", health);
     }
 
+    public override void dashAfterPunch(float magnitude) {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.AddForce(transform.forward * magnitude + Vector3.up * 10, ForceMode.Impulse);
+        StartCoroutine(stopRigidbody(.2f));
+    }
+
+    private IEnumerator stopRigidbody(float time) {
+        yield return new WaitForSeconds(time);
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.velocity = new Vector3(0, 0, 0);
+    }
+
     public GameObject getNextTarget() {
         if(targets[0] == null) targets.RemoveAt(0);
         anim.SetInteger("Targets", targets.Count);

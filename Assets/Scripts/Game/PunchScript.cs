@@ -47,7 +47,7 @@ public class PunchScript : MonoBehaviour
 
     public void startPunching() {
         if (!isPunching) {
-            transform.parent.parent.GetComponent<Rigidbody>().AddForce(new Vector3(10, 10, 0), ForceMode.Impulse);
+            transform.parent.parent.GetComponent<PersonScript>().dashAfterPunch(10);
             gameObject.layer = LayerMask.NameToLayer("MovingPunch");
             isPunching = true;
             GetComponent<Animator>().SetBool("Punching", true);

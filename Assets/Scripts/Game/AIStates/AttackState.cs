@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class AttackState : StateMachineBehaviour
 {
     PersonOther person;
-    float timer = -1;
+    float timer = .5f;
     Transform target;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
@@ -28,7 +28,12 @@ public class AttackState : StateMachineBehaviour
         }
         if (target != null) {
             animator.transform.LookAt(target.position);
-            animator.SetFloat("DistanceFromTarget", Vector3.Distance(person.transform.position, target.position));
+            float distance = Vector3.Distance(person.transform.position, target.position);
+            if (distance < 1.4f) {
+                person.transform.position += -person.transform.forward * Time.deltaTime;
+                person.GetComponent<Rigidbody>().AddForce(-person.transform.forward, ForceMode.Force);
+            }
+            animator.SetFloat("DistanceFromTarget", distance);
         }
         timer -= Time.deltaTime;
     }
