@@ -68,6 +68,10 @@ public class PersonPlayer : PersonScript
         rb.AddForce(transform.forward * magnitude + Vector3.up * 10, ForceMode.Impulse);
     }
 
+    public abstract void push(float psuhPerc, bool actualHit) {
+        
+    }
+
     private IEnumerator damageUIRoutine() {
         changeAlpha(damagedImg, 1);
         changeAlpha(lowHealthImg, .9f - ((float)health/maxHealth));

@@ -28,13 +28,17 @@ public class PunchScript : MonoBehaviour
             if (other.gameObject.layer == LayerMask.NameToLayer("People")) {
                 other.transform.parent.GetComponent<PersonScript>().hit(Mathf.Lerp(minDamage, maxDamage, currentDamagePerc),
                     other.gameObject.name == "Head", transform.parent.parent.gameObject);
+                other.transform.parent.GetComponent<PersonScript>().push(currentDamagePerc, true);
+            }
+            if (other.gameObject.layer == LayerMask.NameToLayer("Punch")) {
+                other.transform.parent.parent.GetComponent<PersonScript>().push(currentDamagePerc, false);
             }
             stopPunching();
         }
     }
 
     private IEnumerator suddenStop() {
-        yield return new WaitForSeconds(0.015f);
+        yield return new WaitForSeconds(0.1f);
         stopPunching();
     }
 

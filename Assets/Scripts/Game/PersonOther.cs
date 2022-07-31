@@ -33,6 +33,10 @@ public class PersonOther : PersonScript
         StartCoroutine(stopRigidbody(.2f));
     }
 
+    public abstract void push(float psuhPerc, bool actualHit) {
+        
+    }
+
     private IEnumerator stopRigidbody(float time) {
         yield return new WaitForSeconds(time);
         Rigidbody rb = GetComponent<Rigidbody>();
