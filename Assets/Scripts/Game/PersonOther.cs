@@ -33,8 +33,12 @@ public class PersonOther : PersonScript
         StartCoroutine(stopRigidbody(.2f));
     }
 
-    public abstract void push(float psuhPerc, bool actualHit) {
-        
+    public override void push(float pushPower, bool actualHit) {
+        if(!actualHit) pushPower /= 2;
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.AddForce(-transform.forward * pushPower + Vector3.up * 10, ForceMode.Impulse);
+        StartCoroutine(stopRigidbody(.2f));
     }
 
     private IEnumerator stopRigidbody(float time) {

@@ -1519,6 +1519,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6135563114007666343, guid: 26492d18ca7f73b4a8a82d36d191e0b8,
+        type: 3}
+      propertyPath: maxDashPower
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135563114007666343, guid: 26492d18ca7f73b4a8a82d36d191e0b8,
+        type: 3}
+      propertyPath: maxPushPower
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135563114007666343, guid: 26492d18ca7f73b4a8a82d36d191e0b8,
+        type: 3}
+      propertyPath: minDashPower
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135563114007666343, guid: 26492d18ca7f73b4a8a82d36d191e0b8,
+        type: 3}
+      propertyPath: minPushPower
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135563115334173920, guid: 26492d18ca7f73b4a8a82d36d191e0b8,
+        type: 3}
+      propertyPath: maxDashPower
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135563115334173920, guid: 26492d18ca7f73b4a8a82d36d191e0b8,
+        type: 3}
+      propertyPath: maxPushPower
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135563115334173920, guid: 26492d18ca7f73b4a8a82d36d191e0b8,
+        type: 3}
+      propertyPath: minDashPower
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6135563115334173920, guid: 26492d18ca7f73b4a8a82d36d191e0b8,
+        type: 3}
+      propertyPath: minPushPower
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 6785246201995683078, guid: 26492d18ca7f73b4a8a82d36d191e0b8,
         type: 3}
       propertyPath: m_Name
@@ -1698,5 +1738,45 @@ PrefabInstance:
       propertyPath: lowHealthImg
       value: 
       objectReference: {fileID: 1715071404}
+    - target: {fileID: 7754946740460710361, guid: 3e1a121a5f271c3499b742ea5d22c99a,
+        type: 3}
+      propertyPath: maxDashPower
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754946740460710361, guid: 3e1a121a5f271c3499b742ea5d22c99a,
+        type: 3}
+      propertyPath: maxPushPower
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754946740460710361, guid: 3e1a121a5f271c3499b742ea5d22c99a,
+        type: 3}
+      propertyPath: minDashPower
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754946740460710361, guid: 3e1a121a5f271c3499b742ea5d22c99a,
+        type: 3}
+      propertyPath: minPushPower
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754946741248127902, guid: 3e1a121a5f271c3499b742ea5d22c99a,
+        type: 3}
+      propertyPath: maxDashPower
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754946741248127902, guid: 3e1a121a5f271c3499b742ea5d22c99a,
+        type: 3}
+      propertyPath: maxPushPower
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754946741248127902, guid: 3e1a121a5f271c3499b742ea5d22c99a,
+        type: 3}
+      propertyPath: minDashPower
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7754946741248127902, guid: 3e1a121a5f271c3499b742ea5d22c99a,
+        type: 3}
+      propertyPath: minPushPower
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e1a121a5f271c3499b742ea5d22c99a, type: 3}

@@ -68,8 +68,12 @@ public class PersonPlayer : PersonScript
         rb.AddForce(transform.forward * magnitude + Vector3.up * 10, ForceMode.Impulse);
     }
 
-    public abstract void push(float psuhPerc, bool actualHit) {
-        
+    public override void push(float pushPower, bool actualHit) {
+        if(!actualHit) pushPower /= 2;
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.drag = 0f;
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.AddForce(-transform.forward * pushPower + Vector3.up * 10, ForceMode.Impulse);
     }
 
     private IEnumerator damageUIRoutine() {

@@ -9,6 +9,8 @@ public class PunchScript : MonoBehaviour
     public bool autoAlert;
     public float minDashPower = 4;
     public float maxDashPower = 15;
+    public float minPushPower = 5;
+    public float maxPushPower = 20;
 
     private bool isPunching;
     private float currentDamagePerc;
@@ -28,10 +30,10 @@ public class PunchScript : MonoBehaviour
             if (other.gameObject.layer == LayerMask.NameToLayer("People")) {
                 other.transform.parent.GetComponent<PersonScript>().hit(Mathf.Lerp(minDamage, maxDamage, currentDamagePerc),
                     other.gameObject.name == "Head", transform.parent.parent.gameObject);
-                other.transform.parent.GetComponent<PersonScript>().push(currentDamagePerc, true);
+                other.transform.parent.GetComponent<PersonScript>().push(Mathf.Lerp(minPushPower, maxPushPower, currentDamagePerc), true);
             }
             if (other.gameObject.layer == LayerMask.NameToLayer("Punch")) {
-                other.transform.parent.parent.GetComponent<PersonScript>().push(currentDamagePerc, false);
+                other.transform.parent.parent.GetComponent<PersonScript>().push(Mathf.Lerp(minPushPower, maxPushPower, currentDamagePerc), false);
             }
             stopPunching();
         }
