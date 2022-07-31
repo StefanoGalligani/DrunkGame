@@ -21,7 +21,7 @@ public class PersonOther : PersonScript
     }
 
     public override void heal(int points) {
-        health+=points;
+        health = Mathf.Min(health+points, maxHealth);
         anim.SetInteger("Health", health);
     }
 

@@ -40,7 +40,7 @@ public class PunchScript : MonoBehaviour
 
         foreach (Collider overlap in overlaps)
         {
-            if (!transform.IsChildOf(overlap.transform)) return false;
+            if (!transform.IsChildOf(overlap.transform) && !overlap.isTrigger) return false;
         }
         return true;
     }
