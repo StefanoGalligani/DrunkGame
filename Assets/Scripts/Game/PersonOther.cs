@@ -7,6 +7,7 @@ public class PersonOther : PersonScript
     public AttacksScriptableObject attackInfo;
     List<GameObject> targets;
     Animator anim;
+
     [HideInInspector]
     public float attackWaitTimer;
     [HideInInspector]
@@ -15,6 +16,8 @@ public class PersonOther : PersonScript
     public int attackIndex = -1;
     [HideInInspector]
     public bool charging = false;
+
+    bool beingPushed = false;
 
     private void Start() {
         health = maxHealth;
@@ -47,12 +50,14 @@ public class PersonOther : PersonScript
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(direction * pushPower + Vector3.up * 10, ForceMode.Impulse);
         StartCoroutine(stopRigidbody(.2f));
+        beingPushed = true;
     }
 
     private IEnumerator stopRigidbody(float time) {
         yield return new WaitForSeconds(time);
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.velocity = new Vector3(0, 0, 0);
+        beingPushed = false;
     }
 
     public GameObject getNextTarget() {
@@ -68,5 +73,13 @@ public class PersonOther : PersonScript
         if (!targets.Contains(person))
             targets.Insert(0, person);
         anim.SetInteger("Targets", targets.Count);
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if (!beingPushed || other.transform.IsChildOf(transform)) return;
+        Debug.Log("Triggered with " + other.gameObject.name);
+        if (other.transform.parent && other.transform.parent.GetComponent<PersonOther>()) {
+            other.transform.parent.GetComponent<PersonOther>().harassed(gameObject);
+        }
     }
 }
