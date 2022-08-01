@@ -77,7 +77,6 @@ public class PersonOther : PersonScript
 
     private void OnTriggerEnter(Collider other) {
         if (!beingPushed || other.transform.IsChildOf(transform)) return;
-        Debug.Log("Triggered with " + other.gameObject.name);
         if (other.transform.parent && other.transform.parent.GetComponent<PersonOther>()) {
             other.transform.parent.GetComponent<PersonOther>().harassed(gameObject);
         }

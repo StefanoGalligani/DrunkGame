@@ -46,6 +46,8 @@ public class AttackState : StateMachineBehaviour
             animator.SetFloat("DistanceFromTarget", distance);
 
             attackLogic();
+        } else {
+            animator.SetFloat("DistanceFromTarget", 1000);
         }
         targetRefreshTimer -= Time.deltaTime;
     }
