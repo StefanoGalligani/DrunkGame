@@ -41,26 +41,22 @@ public class PunchScript : MonoBehaviour
         }
     }
 
-    private IEnumerator suddenStop() {
-        yield return new WaitForSeconds(0.1f);
-        stopPunching();
-    }
-
     public void startPunching(float damagePerc) {
         if (!isPunching) {
             transform.parent.parent.GetComponent<PersonScript>().dashAfterPunch(Mathf.Lerp(minDashPower, maxDashPower, damagePerc));
             gameObject.layer = LayerMask.NameToLayer("MovingPunch");
             isPunching = true;
             currentDamagePerc = damagePerc;
-            GetComponent<Animator>().SetBool("Punching", true);
-            
             if (!canPunch()) {
-                StartCoroutine(suddenStop());
+                GetComponent<Animator>().SetBool("Blocked", true);
                 PersonScript personColliding = findPersonColliding();
                 if (personColliding != null) {
                     personColliding.hit(0, false, transform.parent.parent.gameObject);
                 }
+            } else {
+                GetComponent<Animator>().SetBool("Blocked", false);
             }
+            GetComponent<Animator>().SetBool("Punching", true);
         }
     }
 
