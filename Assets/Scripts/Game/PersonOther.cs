@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class PersonOther : PersonScript
 {
+    public AttacksScriptableObject attackInfo;
     List<GameObject> targets;
     Animator anim;
+    [HideInInspector]
+    public float attackWaitTimer;
+    [HideInInspector]
+    public float attackChargeTimer;
+    [HideInInspector]
+    public int attackIndex = -1;
+    [HideInInspector]
+    public bool charging = false;
 
     private void Start() {
         health = maxHealth;
@@ -47,6 +56,7 @@ public class PersonOther : PersonScript
     }
 
     public GameObject getNextTarget() {
+        if (targets.Count == 0) return null;
         if(targets[0] == null) targets.RemoveAt(0);
         anim.SetInteger("Targets", targets.Count);
         if (targets.Count > 0)
@@ -56,7 +66,7 @@ public class PersonOther : PersonScript
 
     public void harassed(GameObject person) {
         if (!targets.Contains(person))
-            targets.Add(person);
+            targets.Insert(0, person);
         anim.SetInteger("Targets", targets.Count);
     }
 }

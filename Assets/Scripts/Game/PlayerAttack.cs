@@ -51,11 +51,6 @@ public class PlayerAttack : MonoBehaviour
     }
 
     private void changePunchColor(int i, float redPerc) {
-        Color c = new Color(1, 1 - redPerc, 1 - redPerc, 1);
-
-        PunchScript p = GetComponentsInChildren<PunchScript>()[i];
-        foreach(Renderer r in p.GetComponentsInChildren<Renderer>()) {
-            r.material.color = c;
-        }
+        GetComponentsInChildren<PunchScript>()[i].changePunchColor(redPerc);
     }
 }

@@ -80,7 +80,7 @@ public class PunchScript : MonoBehaviour
     private PersonScript findPersonColliding() {
         Vector3 localCenter = GetComponent<SphereCollider>().center;
         Vector3 center = transform.position + new Vector3(localCenter.x * transform.localScale.x, localCenter.y * transform.localScale.y, localCenter.z * transform.localScale.z);
-        float radius = GetComponent<SphereCollider>().radius * transform.localScale.z;
+        float radius = GetComponent<SphereCollider>().radius * transform.localScale.z / 2;
         Collider[] overlaps = Physics.OverlapSphere(center, radius);
 
         foreach (Collider overlap in overlaps)
@@ -99,5 +99,13 @@ public class PunchScript : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Punch");
         isPunching = false;
         GetComponent<Animator>().SetBool("Punching", false);
+    }
+
+    public void changePunchColor(float redPerc) {
+        Color c = new Color(1, 1 - redPerc, 1 - redPerc, 1);
+
+        foreach(Renderer r in GetComponentsInChildren<Renderer>()) {
+            r.material.color = c;
+        }
     }
 }

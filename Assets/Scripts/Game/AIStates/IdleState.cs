@@ -10,6 +10,12 @@ public class IdleState : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         person = animator.GetComponent<PersonOther>();
+        person.attackWaitTimer = 0;
+        person.attackChargeTimer = 0;
+        person.attackIndex = -1;
+        person.charging = false;
+        person.GetComponentsInChildren<PunchScript>()[0].changePunchColor(0);
+        person.GetComponentsInChildren<PunchScript>()[1].changePunchColor(0);
         
         foreach (PunchScript punch in person.GetComponentsInChildren<PunchScript>())
         {

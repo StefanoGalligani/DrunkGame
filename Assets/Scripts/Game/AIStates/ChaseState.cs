@@ -27,7 +27,8 @@ public class ChaseState : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (timer <= 0) {
-            target = person.getNextTarget().transform;
+            GameObject t = person.getNextTarget(); 
+            target = t ? t.transform : null;
             timer = 1;
         }
         if (target != null) {
