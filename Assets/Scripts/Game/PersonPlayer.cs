@@ -59,7 +59,7 @@ public class PersonPlayer : PersonScript
         if (health <=0) {
             Debug.Log("Dead");
             targetAlcoholLevel = 0;
-            dmgAudioSource.PlayOneShot(soundDeath);
+            dmgAudioSource.PlayOneShot(soundDeath[Random.Range(0,3)]);
         } else {
             dmgAudioSource.PlayOneShot(soundDamage);
         }

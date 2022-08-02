@@ -29,7 +29,7 @@ public class DeathState : StateMachineBehaviour
         body.GetComponent<Rigidbody>().useGravity = true;
         body.SetParent(null);
 
-        animator.GetComponent<AudioSource>().PlayOneShot(animator.GetComponent<PersonOther>().soundDeath);
+        animator.GetComponent<AudioSource>().PlayOneShot(animator.GetComponent<PersonOther>().soundDeath[Random.Range(0,3)]);
         Destroy(animator.GetComponent<PersonOther>());
     }
 

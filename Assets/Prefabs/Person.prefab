@@ -110,8 +110,8 @@ MonoBehaviour:
     type: 3}
   particleHit: {fileID: 5622311626747707742, guid: 8b850661b483481449fc37ee9289b06d,
     type: 3}
-  soundBlocked: {fileID: 0}
-  soundHit: {fileID: 0}
+  soundBlocked: {fileID: 8300000, guid: 0f96d52cef80a974da54fb77f6e2f69d, type: 3}
+  soundHit: {fileID: 8300000, guid: 1142a7e0b538b9440a5b6559a231e904, type: 3}
 --- !u!82 &1564824369403476557
 AudioSource:
   m_ObjectHideFlags: 0
@@ -319,8 +319,8 @@ MonoBehaviour:
     type: 3}
   particleHit: {fileID: 5622311626747707742, guid: 8b850661b483481449fc37ee9289b06d,
     type: 3}
-  soundBlocked: {fileID: 0}
-  soundHit: {fileID: 0}
+  soundBlocked: {fileID: 8300000, guid: 0f96d52cef80a974da54fb77f6e2f69d, type: 3}
+  soundHit: {fileID: 8300000, guid: 1142a7e0b538b9440a5b6559a231e904, type: 3}
 --- !u!82 &1564824369403476556
 AudioSource:
   m_ObjectHideFlags: 0
@@ -846,7 +846,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -915,7 +915,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
-  soundDeath: {fileID: 0}
+  soundDeath:
+  - {fileID: 8300000, guid: 0d5c07db1b76d4e4c9a1f26ae365a6f7, type: 3}
+  - {fileID: 8300000, guid: 2a6ec64f635e3f645b323047eed4c2fc, type: 3}
+  - {fileID: 8300000, guid: b19072b88f1f2af4cb82b3c5694159fc, type: 3}
   attackInfo: {fileID: 11400000, guid: de427d52a1a0ee941816ab8001f0261e, type: 2}
   attackWaitTimer: 0
   attackChargeTimer: 0

@@ -24,15 +24,18 @@ public class PlayerAttack : MonoBehaviour
     }
 
     private void checkPunchControls(int i) {
-        if(holding[i]) {
+        if (!holding[i] && holdTime[i] < 0.1f) {
+            holdTime[i] = 0;
+            checkInitiatePunch(i);
+        }
+        
+        if (holding[i]) {
             holdTime[i] = Mathf.Min(holdTime[i] + Time.deltaTime, maxHoldTime);
             checkReleasePunch(i);
         } else if (holdTime[i] >= 0.1f) {
             holdTime[i] -= Time.deltaTime * maxHoldTime / cooldownTime;
-        } else {
-            holdTime[i] = 0;
-            checkInitiatePunch(i);
         }
+
         changePunchColor(i, holdTime[i]/maxHoldTime);
     }
 

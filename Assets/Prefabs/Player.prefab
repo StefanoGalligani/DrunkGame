@@ -62,7 +62,7 @@ MonoBehaviour:
   tooltipText: {fileID: 0}
   beerHealth: 7
   audioSource: {fileID: 271585631}
-  soundDrink: {fileID: 0}
+  soundDrink: {fileID: 8300000, guid: 8c1a78aff0c4dcc4b9db1417209cbdc8, type: 3}
 --- !u!82 &271585631
 AudioSource:
   m_ObjectHideFlags: 0
@@ -353,8 +353,8 @@ MonoBehaviour:
     type: 3}
   particleHit: {fileID: 5622311626747707742, guid: 8b850661b483481449fc37ee9289b06d,
     type: 3}
-  soundBlocked: {fileID: 0}
-  soundHit: {fileID: 0}
+  soundBlocked: {fileID: 8300000, guid: 0f96d52cef80a974da54fb77f6e2f69d, type: 3}
+  soundHit: {fileID: 8300000, guid: 1142a7e0b538b9440a5b6559a231e904, type: 3}
 --- !u!82 &6958331511275394941
 AudioSource:
   m_ObjectHideFlags: 0
@@ -562,8 +562,8 @@ MonoBehaviour:
     type: 3}
   particleHit: {fileID: 5622311626747707742, guid: 8b850661b483481449fc37ee9289b06d,
     type: 3}
-  soundBlocked: {fileID: 0}
-  soundHit: {fileID: 0}
+  soundBlocked: {fileID: 8300000, guid: 0f96d52cef80a974da54fb77f6e2f69d, type: 3}
+  soundHit: {fileID: 8300000, guid: 1142a7e0b538b9440a5b6559a231e904, type: 3}
 --- !u!82 &6958331511275394942
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1289,7 +1289,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
-  soundDeath: {fileID: 0}
+  soundDeath:
+  - {fileID: 8300000, guid: 0d5c07db1b76d4e4c9a1f26ae365a6f7, type: 3}
+  - {fileID: 8300000, guid: 2a6ec64f635e3f645b323047eed4c2fc, type: 3}
+  - {fileID: 8300000, guid: b19072b88f1f2af4cb82b3c5694159fc, type: 3}
   damagedImg: {fileID: 0}
   lowHealthImg: {fileID: 0}
   maxAlcoholTime: 20
@@ -1298,7 +1301,7 @@ MonoBehaviour:
   oscillationMagnitudeMultiplier: 0.4
   alcoholPerBeer: 4
   syncSpeed: 3
-  soundDamage: {fileID: 0}
+  soundDamage: {fileID: 8300000, guid: e193c0b92579a3649b018c4a92147849, type: 3}
   dmgAudioSource: {fileID: 888029111}
   walkAudioSource: {fileID: 6958331512379213885}
 --- !u!114 &1515437526507368476

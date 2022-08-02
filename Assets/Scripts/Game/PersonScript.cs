@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class PersonScript : MonoBehaviour
 {
     public float maxHealth = 20;
-    public AudioClip soundDeath;
+    public AudioClip[] soundDeath;
     protected float health;
 
     public abstract void hit(float damage, bool head, GameObject attacker);
