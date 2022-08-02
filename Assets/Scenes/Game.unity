@@ -6083,5 +6083,10 @@ PrefabInstance:
       propertyPath: lowHealthImg
       value: 
       objectReference: {fileID: 1715071404}
+    - target: {fileID: 7754946741248127902, guid: 3e1a121a5f271c3499b742ea5d22c99a,
+        type: 3}
+      propertyPath: soundBlocked
+      value: 
+      objectReference: {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e1a121a5f271c3499b742ea5d22c99a, type: 3}
