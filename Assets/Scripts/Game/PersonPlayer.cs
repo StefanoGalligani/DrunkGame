@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class PersonPlayer : PersonScript
 {
@@ -15,9 +16,9 @@ public class PersonPlayer : PersonScript
     public float alcoholPerBeer = 5;
     public float syncSpeed = 3;
 
+    public AudioMixer mixer;
     public AudioClip soundDamage;
     public AudioSource dmgAudioSource;
-    public AudioSource walkAudioSource;
 
     private float targetAlcoholLevel = 0;
     private float currentAlcoholLevel = 0;
@@ -63,12 +64,14 @@ public class PersonPlayer : PersonScript
         } else {
             dmgAudioSource.PlayOneShot(soundDamage);
         }
+        muffleSound((float)health/maxHealth);
         StartCoroutine(damageUIRoutine());
     }
 
     public override void heal(float points) {
         health = Mathf.Min(health+points, maxHealth);
         changeAlpha(lowHealthImg, .9f - ((float)health/maxHealth));
+        muffleSound((float)health/maxHealth);
         targetAlcoholLevel = Mathf.Min(targetAlcoholLevel + alcoholPerBeer, maxAlcoholTime);
     }
 
@@ -89,7 +92,7 @@ public class PersonPlayer : PersonScript
 
     private IEnumerator damageUIRoutine() {
         changeAlpha(damagedImg, 1);
-        changeAlpha(lowHealthImg, .9f - ((float)health/maxHealth));
+        changeAlpha(lowHealthImg, Mathf.Max(0, 1 - ((float)health/maxHealth)));
         float counter = 1;
         float speed = 2;
         while (counter > 0) {
@@ -102,7 +105,12 @@ public class PersonPlayer : PersonScript
 
     private void changeAlpha(Image i, float a) {
         Color c = i.color;
-        c.a = a;
+        c.a = Mathf.Max(0, a);
         i.color = c;
+    }
+
+    private void muffleSound(float healthPerc) {
+        mixer.SetFloat("pitch", Mathf.Lerp(0.5f, 1, healthPerc));
+        mixer.SetFloat("cutoff", Mathf.Lerp(500, 5000, healthPerc));
     }
 }

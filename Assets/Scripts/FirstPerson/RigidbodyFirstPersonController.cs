@@ -81,6 +81,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         public MovementSettings movementSettings = new MovementSettings();
         public MouseLook mouseLook = new MouseLook();
         public AdvancedSettings advancedSettings = new AdvancedSettings();
+        public AudioSource audioSource;
+        public AudioClip[] FootstepSounds;
 
 
         private Rigidbody m_RigidBody;
@@ -88,6 +90,10 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private float m_YRotation;
         private Vector3 m_GroundContactNormal;
         private bool m_Jump, m_PreviouslyGrounded, m_Jumping, m_IsGrounded;
+
+        private float m_StepCycle = 0;
+        private float m_NextStep = 0;
+        private float m_StepInterval = 2;
 
 
         public Vector3 Velocity
@@ -185,6 +191,43 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 }
             }
             m_Jump = false;
+
+            ProgressStepCycle(1, input);
+        }
+
+        private void ProgressStepCycle(float speed, Vector2 input)
+        {
+            if (m_RigidBody.velocity.sqrMagnitude > 0 && (input.x != 0 || input.y != 0))
+            {
+                m_StepCycle += (m_RigidBody.velocity.magnitude + (speed*(Running ? movementSettings.RunMultiplier : 1f)))*
+                             Time.fixedDeltaTime;
+            }
+
+            if (!(m_StepCycle > m_NextStep))
+            {
+                return;
+            }
+
+            m_NextStep = m_StepCycle + m_StepInterval;
+
+            PlayFootStepAudio();
+        }
+
+
+        private void PlayFootStepAudio()
+        {
+            if (!Grounded)
+            {
+                return;
+            }
+            // pick & play a random footstep sound from the array,
+            // excluding sound at index 0
+            int n = UnityEngine.Random.Range(1, FootstepSounds.Length);
+            audioSource.clip = FootstepSounds[n];
+            audioSource.PlayOneShot(audioSource.clip);
+            // move picked sound to index 0 so it's not picked next time
+            FootstepSounds[n] = FootstepSounds[0];
+            FootstepSounds[0] = audioSource.clip;
         }
 
 

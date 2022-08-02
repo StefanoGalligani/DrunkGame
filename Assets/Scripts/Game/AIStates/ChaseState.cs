@@ -10,6 +10,13 @@ public class ChaseState : StateMachineBehaviour
     float timer = -1;
     Transform target;
 
+    private float m_StepCycle = 0;
+    private float m_NextStep = 0;
+    private float m_StepInterval = 1;
+    
+    public AudioSource audioSource;
+    public AudioClip[] footstepSounds;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -17,6 +24,9 @@ public class ChaseState : StateMachineBehaviour
         person = animator.GetComponent<PersonOther>();
         agent.isStopped = false;
         
+        audioSource = person.walkAudioSource;
+        footstepSounds = person.footstepSounds;
+
         foreach (PunchScript punch in person.GetComponentsInChildren<PunchScript>())
         {
             punch.SetAlerted(true);
@@ -37,23 +47,35 @@ public class ChaseState : StateMachineBehaviour
             animator.SetFloat("DistanceFromTarget", Vector3.Distance(person.transform.position, target.position));
         }
         timer -= Time.deltaTime;
+        ProgressStepCycle();
+    }
+    
+    private void ProgressStepCycle()
+    {
+        if (!person.isBeingPushed())
+        {
+            m_StepCycle += agent.speed * Time.deltaTime;
+        }
+
+        if (!(m_StepCycle > m_NextStep))
+        {
+            return;
+        }
+
+        m_NextStep = m_StepCycle + m_StepInterval;
+
+        PlayFootStepAudio();
     }
 
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
-
-    // OnStateMove is called right after Animator.OnAnimatorMove()
-    //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that processes and affects root motion
-    //}
-
-    // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
+    private void PlayFootStepAudio()
+    {
+        // pick & play a random footstep sound from the array,
+        // excluding sound at index 0
+        int n = UnityEngine.Random.Range(1, footstepSounds.Length);
+        audioSource.clip = footstepSounds[n];
+        audioSource.PlayOneShot(audioSource.clip);
+        // move picked sound to index 0 so it's not picked next time
+        footstepSounds[n] = footstepSounds[0];
+        footstepSounds[0] = audioSource.clip;
+    }
 }

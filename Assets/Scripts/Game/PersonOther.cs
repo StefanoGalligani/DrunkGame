@@ -5,6 +5,8 @@ using UnityEngine;
 public class PersonOther : PersonScript
 {
     public AttacksScriptableObject attackInfo;
+    public AudioSource walkAudioSource;
+    public AudioClip[] footstepSounds;
     List<GameObject> targets;
     Animator anim;
 
@@ -42,6 +44,7 @@ public class PersonOther : PersonScript
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
         rb.AddForce(transform.forward * magnitude + Vector3.up * 10, ForceMode.Impulse);
         StartCoroutine(stopRigidbody(.2f));
+        beingPushed = true;
     }
 
     public override void push(float pushPower, bool actualHit, Vector3 direction) {
@@ -51,6 +54,10 @@ public class PersonOther : PersonScript
         rb.AddForce(direction * pushPower/2 + Vector3.up * 10, ForceMode.Impulse);
         StartCoroutine(stopRigidbody(.2f*2));
         beingPushed = true;
+    }
+
+    public bool isBeingPushed() {
+        return beingPushed;
     }
 
     private IEnumerator stopRigidbody(float time) {
@@ -70,8 +77,12 @@ public class PersonOther : PersonScript
     }
 
     public void harassed(GameObject person) {
-        if (!targets.Contains(person))
-            targets.Insert(0, person);
+        if (!targets.Contains(person)){
+            if (Random.Range(0f,1f) < 0.5f)
+                targets.Insert(0, person);
+            else
+                targets.Add(person);
+        }
         anim.SetInteger("Targets", targets.Count);
     }
 

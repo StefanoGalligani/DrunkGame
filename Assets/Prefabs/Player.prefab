@@ -1301,9 +1301,9 @@ MonoBehaviour:
   oscillationMagnitudeMultiplier: 0.4
   alcoholPerBeer: 4
   syncSpeed: 3
+  mixer: {fileID: 24100000, guid: 7e9707a274422364e843bf2ec9bdd86a, type: 2}
   soundDamage: {fileID: 8300000, guid: e193c0b92579a3649b018c4a92147849, type: 3}
   dmgAudioSource: {fileID: 888029111}
-  walkAudioSource: {fileID: 6958331512379213885}
 --- !u!114 &1515437526507368476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1373,6 +1373,12 @@ MonoBehaviour:
     slowDownRate: 20
     airControl: 1
     shellOffset: -0.3
+  audioSource: {fileID: 6958331512379213885}
+  FootstepSounds:
+  - {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
+  - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
+  - {fileID: 8300000, guid: 5a9383dda6cabc047b7a297602e93eb4, type: 3}
+  - {fileID: 8300000, guid: e9714160ce34f2b4ab63ff8c27bd68e1, type: 3}
 --- !u!54 &6958331512379213872
 Rigidbody:
   m_ObjectHideFlags: 0

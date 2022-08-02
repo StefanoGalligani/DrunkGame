@@ -920,6 +920,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 2a6ec64f635e3f645b323047eed4c2fc, type: 3}
   - {fileID: 8300000, guid: b19072b88f1f2af4cb82b3c5694159fc, type: 3}
   attackInfo: {fileID: 11400000, guid: de427d52a1a0ee941816ab8001f0261e, type: 2}
+  walkAudioSource: {fileID: 6785246201995683076}
+  footstepSounds:
+  - {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
+  - {fileID: 8300000, guid: 8bc94ec6ed537e743b481638bdcd503d, type: 3}
+  - {fileID: 8300000, guid: 5a9383dda6cabc047b7a297602e93eb4, type: 3}
+  - {fileID: 8300000, guid: e9714160ce34f2b4ab63ff8c27bd68e1, type: 3}
   attackWaitTimer: 0
   attackChargeTimer: 0
   attackIndex: -1
