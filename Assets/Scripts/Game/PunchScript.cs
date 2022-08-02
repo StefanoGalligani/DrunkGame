@@ -11,6 +11,10 @@ public class PunchScript : MonoBehaviour
     public float maxDashPower = 15;
     public float minPushPower = 5;
     public float maxPushPower = 20;
+    public GameObject particleBlocked;
+    public GameObject particleHit;
+    public AudioClip soundBlocked;
+    public AudioClip soundHit;
 
     private bool isPunching;
     private float currentDamagePerc;
@@ -32,6 +36,12 @@ public class PunchScript : MonoBehaviour
                     other.gameObject.name == "Head", transform.parent.parent.gameObject);
                 other.transform.parent.GetComponent<PersonScript>().push(Mathf.Lerp(minPushPower, maxPushPower, currentDamagePerc)
                     , true, transform.parent.parent.forward);
+
+                GameObject.Instantiate(particleHit, other.contacts[0].point, Quaternion.identity);
+                GetComponent<AudioSource>().PlayOneShot(soundHit);
+            } else {
+                GameObject.Instantiate(particleBlocked, other.contacts[0].point, Quaternion.identity);
+                GetComponent<AudioSource>().PlayOneShot(soundBlocked);
             }
             if (other.gameObject.layer == LayerMask.NameToLayer("Punch")) {
                 other.transform.parent.parent.GetComponent<PersonScript>().push(Mathf.Lerp(minPushPower, maxPushPower, currentDamagePerc)

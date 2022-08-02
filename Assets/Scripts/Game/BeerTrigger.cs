@@ -7,6 +7,8 @@ public class BeerTrigger : MonoBehaviour
 {
     public TextMeshProUGUI tooltipText;
     public int beerHealth = 7;
+    public AudioSource audioSource;
+    public AudioClip soundDrink;
     private List<GameObject> beers;
 
     private void Start() {
@@ -36,6 +38,7 @@ public class BeerTrigger : MonoBehaviour
 
     private void drinkBeer() {
         if (beers.Count > 0) {
+            audioSource.PlayOneShot(soundDrink);
             transform.parent.parent.GetComponent<PersonPlayer>().heal(beerHealth);
             GameObject b = beers[0]; 
             beers.Remove(b);

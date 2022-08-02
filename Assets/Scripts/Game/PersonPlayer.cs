@@ -7,12 +7,17 @@ public class PersonPlayer : PersonScript
 {
     public Image damagedImg;
     public Image lowHealthImg;
+
     public float maxAlcoholTime = 20;
     public float maxAngle = 30;
     public float oscillationSpeed = 1;
     public float oscillationMagnitudeMultiplier = .75f;
     public float alcoholPerBeer = 5;
     public float syncSpeed = 3;
+
+    public AudioClip soundDamage;
+    public AudioSource dmgAudioSource;
+    public AudioSource walkAudioSource;
 
     private float targetAlcoholLevel = 0;
     private float currentAlcoholLevel = 0;
@@ -51,7 +56,13 @@ public class PersonPlayer : PersonScript
     public override void hit(float damage, bool head, GameObject attacker) {
         if (head) damage *= 2;
         health -= damage;
-        if (health <=0) Debug.Log("Dead");
+        if (health <=0) {
+            Debug.Log("Dead");
+            targetAlcoholLevel = 0;
+            dmgAudioSource.PlayOneShot(soundDeath);
+        } else {
+            dmgAudioSource.PlayOneShot(soundDamage);
+        }
         StartCoroutine(damageUIRoutine());
     }
 

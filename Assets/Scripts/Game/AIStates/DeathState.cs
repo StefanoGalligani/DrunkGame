@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class DeathState : StateMachineBehaviour
 {
+    float timeToDestroy = .5f;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        animator.SetBool("Dead", true);
         Transform person = animator.transform;
         Transform head = person.GetChild(0);
         Transform body = person.GetChild(1);
@@ -26,7 +29,16 @@ public class DeathState : StateMachineBehaviour
         body.GetComponent<Rigidbody>().useGravity = true;
         body.SetParent(null);
 
-        Destroy(person.gameObject);
+        animator.GetComponent<AudioSource>().PlayOneShot(animator.GetComponent<PersonOther>().soundDeath);
+        Destroy(animator.GetComponent<PersonOther>());
+    }
+
+    override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        timeToDestroy -= Time.deltaTime;
+        if (timeToDestroy <= 0) {
+            Destroy(animator.gameObject);
+        }
     }
 
 }
