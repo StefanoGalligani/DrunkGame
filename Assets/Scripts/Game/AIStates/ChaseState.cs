@@ -75,7 +75,7 @@ public class ChaseState : StateMachineBehaviour
         // excluding sound at index 0
         int n = UnityEngine.Random.Range(1, footstepSounds.Length);
         audioSource.clip = footstepSounds[n];
-        audioSource.PlayOneShot(audioSource.clip);
+        audioSource.Play();
         // move picked sound to index 0 so it's not picked next time
         footstepSounds[n] = footstepSounds[0];
         footstepSounds[0] = audioSource.clip;
