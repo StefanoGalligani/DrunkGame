@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     public WaveInfo[] waves;
     public GameObject barman;
     public AttacksScriptableObject[] attacks;
+    public GameObject[] doors;
 
     float checkWaveTimer = 2;
     int nextWave = 0;
@@ -35,8 +36,8 @@ public class GameManager : MonoBehaviour
             {
                 if (!enemy) spawnedEnemies.Remove(enemy);
             }
-            if (spawnedEnemies.Count == 0) startNextWave();
             checkWaveTimer = 2;
+            if (spawnedEnemies.Count == 0) startNextWave();
         }
     }
 
@@ -67,6 +68,24 @@ public class GameManager : MonoBehaviour
     }
 
     private IEnumerator openDoors() {
-        yield return null;
+        float angle = 0;
+        while (angle < 90) {
+            angle += Time.deltaTime * 90;
+            foreach(GameObject d in doors) {
+                d.transform.localRotation = Quaternion.Euler(0, -angle, 0);
+            }
+            yield return null;
+        }
+        yield return new WaitForSeconds(3);
+        while (angle > 0) {
+            angle -= Time.deltaTime * 90;
+            foreach(GameObject d in doors) {
+                d.transform.localRotation = Quaternion.Euler(0, -angle, 0);
+            }
+            yield return null;
+        }
+        foreach(GameObject d in doors) {
+            d.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
     }
 }
