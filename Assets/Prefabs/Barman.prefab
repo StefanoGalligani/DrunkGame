@@ -749,7 +749,7 @@ GameObject:
   - component: {fileID: 1589704332504334711}
   m_Layer: 3
   m_Name: Barman
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -901,7 +901,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0d5c07db1b76d4e4c9a1f26ae365a6f7, type: 3}
   - {fileID: 8300000, guid: 2a6ec64f635e3f645b323047eed4c2fc, type: 3}
   - {fileID: 8300000, guid: b19072b88f1f2af4cb82b3c5694159fc, type: 3}
-  attackInfo: {fileID: 11400000, guid: de427d52a1a0ee941816ab8001f0261e, type: 2}
+  attackInfo: {fileID: 11400000, guid: 5df14880bbba8e9409e6ec4a5d717022, type: 2}
   walkAudioSource: {fileID: 5198784349426408695}
   footstepSounds:
   - {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}

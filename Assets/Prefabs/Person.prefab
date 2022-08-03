@@ -950,7 +950,6 @@ MonoBehaviour:
   hairMats:
   - {fileID: 2100000, guid: f4eace3d57707aa439b1fad5181d35dc, type: 2}
   - {fileID: 2100000, guid: 29f73d593904f524f9164bf0b6afb28a, type: 2}
-  faceIndex: 0
   idlePosition: {x: 0, y: 0, z: 0}
   attackWaitTimer: 0
   attackChargeTimer: 0
