@@ -39,7 +39,7 @@ public class AttackState : StateMachineBehaviour
         if (target != null) {
             animator.transform.LookAt(target.position);
             float distance = Vector3.Distance(person.transform.position, target.position);
-            if (distance < 1.2f) {
+            if (distance < 1.3f) {
                 person.transform.position += -person.transform.forward * Time.deltaTime;
                 person.GetComponent<Rigidbody>().AddForce(-person.transform.forward, ForceMode.Force);
             }

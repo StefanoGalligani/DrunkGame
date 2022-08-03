@@ -7,6 +7,8 @@ public class PersonOther : PersonScript
     public AttacksScriptableObject attackInfo;
     public AudioSource walkAudioSource;
     public AudioClip[] footstepSounds;
+    [HideInInspector]
+    public Vector3 idlePosition;
     List<GameObject> targets;
     Animator anim;
 
@@ -25,6 +27,7 @@ public class PersonOther : PersonScript
         health = maxHealth;
         anim = GetComponent<Animator>();
         targets = new List<GameObject>();
+        idlePosition = transform.position;
     }
 
     public override void hit(float damage, bool head, GameObject attacker) {

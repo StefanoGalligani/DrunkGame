@@ -42,7 +42,7 @@ public class BeerTrigger : MonoBehaviour
             transform.parent.parent.GetComponent<PersonPlayer>().heal(beerHealth);
             GameObject b = beers[0]; 
             beers.Remove(b);
-            Destroy(b);
+            b.GetComponent<Beer>().drank(transform.parent.position);
             if (beers.Count == 0) changeAlpha(tooltipText, 0);
         }
     }

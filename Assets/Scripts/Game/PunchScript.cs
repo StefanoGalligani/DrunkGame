@@ -44,6 +44,8 @@ public class PunchScript : MonoBehaviour
                 GetComponent<AudioSource>().PlayOneShot(soundBlocked);
             }
             if (other.gameObject.layer == LayerMask.NameToLayer("Punch")) {
+                if (other.transform.parent.parent.GetComponent<PersonOther>())
+                    other.transform.parent.parent.GetComponent<PersonOther>().harassed(transform.parent.parent.gameObject);
                 other.transform.parent.parent.GetComponent<PersonScript>().push(Mathf.Lerp(minPushPower, maxPushPower, currentDamagePerc)
                 , false, transform.parent.parent.forward);
             }
