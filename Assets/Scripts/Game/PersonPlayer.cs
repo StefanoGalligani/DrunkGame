@@ -58,14 +58,40 @@ public class PersonPlayer : PersonScript
         if (head) damage *= 2;
         health -= damage;
         if (health <=0) {
-            Debug.Log("Dead");
-            targetAlcoholLevel = 0;
+            death();
             dmgAudioSource.PlayOneShot(soundDeath[Random.Range(0,3)]);
         } else {
+            muffleSound((float)health/maxHealth);
+            StartCoroutine(damageUIRoutine());
             dmgAudioSource.PlayOneShot(soundDamage);
         }
-        muffleSound((float)health/maxHealth);
-        StartCoroutine(damageUIRoutine());
+    }
+
+    private void death() {
+        targetAlcoholLevel = 0;
+        muffleSound(1);
+        Destroy(GetComponent<PlayerAttack>());
+        GetComponentInChildren<BeerTrigger>().removeFromGame();
+        foreach(PunchScript p in GetComponentsInChildren<PunchScript>()) {
+            Destroy(p.gameObject);
+        }
+        Transform body = transform.GetChild(1);
+        Transform head = transform.GetChild(0);
+        body.GetComponent<Rigidbody>().useGravity = true;
+        body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        body.gameObject.layer = LayerMask.NameToLayer("Default");
+        body.SetParent(null);
+        head.GetComponent<Rigidbody>().useGravity = true;
+        head.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        head.gameObject.layer = LayerMask.NameToLayer("Default");
+        head.SetParent(null);
+
+        StartCoroutine(waitAndDie());
+    }
+
+    private IEnumerator waitAndDie() {
+        yield return new WaitForSeconds(0.5f);
+        Destroy(gameObject);
     }
 
     public override void heal(float points) {

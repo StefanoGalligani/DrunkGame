@@ -23,13 +23,13 @@ public class DeathState : StateMachineBehaviour
         head.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         head.GetComponent<Rigidbody>().useGravity = true;
         head.SetParent(null);
-        head.GetComponent<Rigidbody>().AddForce(Vector3.up * 800 - animator.transform.forward * 1000);
+        head.GetComponent<Rigidbody>().AddForce(Vector3.up * 800 - animator.transform.forward * 1200);
 
         body.gameObject.layer = LayerMask.NameToLayer("Default");
         body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         body.GetComponent<Rigidbody>().useGravity = true;
         body.SetParent(null);
-        body.GetComponent<Rigidbody>().AddForce(-animator.transform.forward * 1200);
+        body.GetComponent<Rigidbody>().AddForce(-animator.transform.forward * 200 + animator.transform.right * 80);
 
         animator.GetComponent<AudioSource>().PlayOneShot(animator.GetComponent<PersonOther>().soundDeath[Random.Range(0,3)]);
         animator.GetComponent<PersonOther>().changeFace(false);

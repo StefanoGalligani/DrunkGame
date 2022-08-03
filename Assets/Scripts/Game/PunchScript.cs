@@ -32,10 +32,10 @@ public class PunchScript : MonoBehaviour
         if (transform.IsChildOf(other.transform)) return;
         if (isPunching) {
             if (other.gameObject.layer == LayerMask.NameToLayer("People")) {
-                other.transform.parent.GetComponent<PersonScript>().hit(Mathf.Lerp(minDamage, maxDamage, currentDamagePerc),
-                    other.gameObject.name == "Head", transform.parent.parent.gameObject);
                 other.transform.parent.GetComponent<PersonScript>().push(Mathf.Lerp(minPushPower, maxPushPower, currentDamagePerc)
                     , true, transform.parent.parent.forward);
+                other.transform.parent.GetComponent<PersonScript>().hit(Mathf.Lerp(minDamage, maxDamage, currentDamagePerc),
+                    other.gameObject.name == "Head", transform.parent.parent.gameObject);
 
                 GameObject.Instantiate(particleHit, other.contacts[0].point, Quaternion.identity);
                 GetComponent<AudioSource>().PlayOneShot(soundHit);

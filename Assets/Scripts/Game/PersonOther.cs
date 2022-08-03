@@ -123,10 +123,10 @@ public class PersonOther : PersonScript
 
     public void harassed(GameObject person) {
         if (!targets.Contains(person)){
-            if (Random.Range(0f,1f) < 0.5f)
-                targets.Insert(0, person);
-            else
+            if (Random.Range(0f,1f) < 0.5f || (gameObject.tag == "Enemy" && person.tag == "Enemy"))
                 targets.Add(person);
+            else
+                targets.Insert(0, person);
         }
         anim.SetInteger("Targets", targets.Count);
     }

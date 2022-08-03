@@ -912,11 +912,20 @@ MonoBehaviour:
   bodyRenderer: {fileID: 3283344185460442408}
   faceTextures1:
   - {fileID: 2800000, guid: 19e5888f38129814597cecbf9d57e6b7, type: 3}
+  - {fileID: 2800000, guid: 19e5888f38129814597cecbf9d57e6b7, type: 3}
+  - {fileID: 2800000, guid: 19e5888f38129814597cecbf9d57e6b7, type: 3}
+  - {fileID: 2800000, guid: 19e5888f38129814597cecbf9d57e6b7, type: 3}
+  - {fileID: 2800000, guid: 19e5888f38129814597cecbf9d57e6b7, type: 3}
   faceTextures2:
+  - {fileID: 2800000, guid: 19e5888f38129814597cecbf9d57e6b7, type: 3}
+  - {fileID: 2800000, guid: 19e5888f38129814597cecbf9d57e6b7, type: 3}
+  - {fileID: 2800000, guid: 19e5888f38129814597cecbf9d57e6b7, type: 3}
+  - {fileID: 2800000, guid: 19e5888f38129814597cecbf9d57e6b7, type: 3}
   - {fileID: 2800000, guid: 19e5888f38129814597cecbf9d57e6b7, type: 3}
   clothTextures:
   - {fileID: 2800000, guid: 8f0b99ebbdae4e94faa352695fccdeb3, type: 3}
-  faceIndex: 0
+  hairObjects: []
+  hairMats: []
   idlePosition: {x: 0, y: 0, z: 0}
   attackWaitTimer: 0
   attackChargeTimer: 0

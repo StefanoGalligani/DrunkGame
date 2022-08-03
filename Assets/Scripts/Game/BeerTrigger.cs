@@ -52,4 +52,9 @@ public class BeerTrigger : MonoBehaviour
         c.a = a;
         i.color = c;
     }
+
+    public void removeFromGame() {
+        changeAlpha(tooltipText, 0);
+        Destroy(gameObject);
+    }
 }
