@@ -30,6 +30,7 @@ public class DeathState : StateMachineBehaviour
         body.SetParent(null);
 
         animator.GetComponent<AudioSource>().PlayOneShot(animator.GetComponent<PersonOther>().soundDeath[Random.Range(0,3)]);
+        animator.GetComponent<PersonOther>().changeFace(false);
         Destroy(animator.GetComponent<PersonOther>());
     }
 

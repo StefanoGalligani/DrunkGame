@@ -31,6 +31,8 @@ public class ChaseState : StateMachineBehaviour
         {
             punch.SetAlerted(true);
         }
+        
+        person.changeFace(true);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

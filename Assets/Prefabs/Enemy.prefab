@@ -766,8 +766,8 @@ GameObject:
   - component: {fileID: 6785246201995683099}
   - component: {fileID: 809285764}
   m_Layer: 3
-  m_Name: Person
-  m_TagString: Untagged
+  m_Name: Enemy
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -941,9 +941,7 @@ MonoBehaviour:
   - {fileID: 2800000, guid: d61f50886de036b4e847fa7cf15301ea, type: 3}
   - {fileID: 2800000, guid: a61fbdb125ebc33489cae5079767d86e, type: 3}
   clothTextures:
-  - {fileID: 2800000, guid: e6d055ea33c0d034382a2f672a9bd78f, type: 3}
-  - {fileID: 2800000, guid: 8581a7fd8888680479bf940a3b7c31b9, type: 3}
-  - {fileID: 2800000, guid: 830bee614a1fb384bb9eac8b539c9c9f, type: 3}
+  - {fileID: 2800000, guid: 8f0b99ebbdae4e94faa352695fccdeb3, type: 3}
   hairObjects:
   - {fileID: 260530091585145698}
   - {fileID: 2156847000339685425}

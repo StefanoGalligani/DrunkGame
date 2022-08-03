@@ -7,6 +7,14 @@ public class PersonOther : PersonScript
     public AttacksScriptableObject attackInfo;
     public AudioSource walkAudioSource;
     public AudioClip[] footstepSounds;
+    public MeshRenderer headRenderer;
+    public MeshRenderer bodyRenderer;
+    public Texture[] faceTextures1;
+    public Texture[] faceTextures2;
+    public Texture[] clothTextures;
+    public GameObject[] hairObjects;
+    public Material[] hairMats;
+
     [HideInInspector]
     public Vector3 idlePosition;
     List<GameObject> targets;
@@ -22,15 +30,49 @@ public class PersonOther : PersonScript
     public bool charging = false;
 
     bool beingPushed = false;
+    private int faceIndex;
+    private bool previousAngry = false;
+    
 
     private void Start() {
         health = maxHealth;
         anim = GetComponent<Animator>();
         targets = new List<GameObject>();
         idlePosition = transform.position;
+        InitiateTextures();
+    }
+
+    private void InitiateTextures() {
+        faceIndex = Random.Range(0,2);
+        changeFace(false);
+        bodyRenderer.material.mainTexture = clothTextures[Random.Range(0, clothTextures.Length)];
+        if (hairObjects.Length > 0) {
+            int toDelete = Random.Range(0,3);
+            if (toDelete < 2) {
+                Destroy(hairObjects[toDelete]);
+                hairObjects[1 - toDelete].GetComponent<MeshRenderer>().material = hairMats[Random.Range(0,hairMats.Length)];
+            } else {
+                Destroy(hairObjects[0]);
+                Destroy(hairObjects[1]);
+            }
+        }
+    }
+
+    public void changeFace(bool isAngry) {
+        previousAngry = isAngry;
+        int nextIndex = 0;
+        if (isAngry) nextIndex += 1;
+        if (health <= maxHealth/2) nextIndex += 2;
+        if (health <= 0.1f) nextIndex = 4;
+
+        if (faceIndex == 0)
+            headRenderer.material.mainTexture = faceTextures1[nextIndex];
+        else
+            headRenderer.material.mainTexture = faceTextures2[nextIndex];
     }
 
     public override void hit(float damage, bool head, GameObject attacker) {
+        changeFace(previousAngry);
         if (head) damage *= 2;
         health -= damage;
         anim.SetFloat("Health", health);
