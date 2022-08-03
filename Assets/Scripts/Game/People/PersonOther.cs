@@ -137,4 +137,17 @@ public class PersonOther : PersonScript
             other.transform.parent.GetComponent<PersonOther>().harassed(gameObject);
         }
     }
+
+    public void chasePlayer() {
+        StartCoroutine(addPlayerToTargets());
+    }
+
+    private IEnumerator addPlayerToTargets() {
+        yield return new WaitForSeconds(0.3f);
+        PersonPlayer player = FindObjectOfType<PersonPlayer>();
+        if (player) {
+            targets.Add(player.gameObject);
+            anim.SetInteger("Targets", targets.Count);
+        }
+    }
 }

@@ -19,13 +19,13 @@ public class DeathState : StateMachineBehaviour
             Destroy(punch.gameObject);
         }
 
-        head.gameObject.layer = LayerMask.NameToLayer("Default");
+        head.gameObject.layer = LayerMask.NameToLayer("DeadPeople");
         head.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         head.GetComponent<Rigidbody>().useGravity = true;
         head.SetParent(null);
         head.GetComponent<Rigidbody>().AddForce(Vector3.up * 800 - animator.transform.forward * 1200);
 
-        body.gameObject.layer = LayerMask.NameToLayer("Default");
+        body.gameObject.layer = LayerMask.NameToLayer("DeadPeople");
         body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         body.GetComponent<Rigidbody>().useGravity = true;
         body.SetParent(null);
