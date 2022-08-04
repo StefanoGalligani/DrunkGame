@@ -70,6 +70,7 @@ public class GameManager : MonoBehaviour
 
     private void win() {
         FindObjectOfType<CamAttractor>().GameFinished();
+        FindObjectOfType<PauseScript>().FinishGame(true);
         Destroy(FindObjectOfType<RigidbodyFirstPersonController>());
         Destroy(FindObjectOfType<PersonPlayer>().damagedImg.gameObject);
         Destroy(FindObjectOfType<PersonPlayer>().lowHealthImg.gameObject);

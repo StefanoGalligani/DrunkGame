@@ -76,6 +76,7 @@ public class PersonPlayer : PersonScript
         targetAlcoholLevel = 0;
         muffleSound(1);
         Destroy(GetComponent<PlayerAttack>());
+        Destroy(GetComponent<RigidbodyFirstPersonController>());
         GetComponentInChildren<BeerTrigger>().removeFromGame();
         foreach(PunchScript p in GetComponentsInChildren<PunchScript>()) {
             Destroy(p.gameObject);
@@ -94,6 +95,7 @@ public class PersonPlayer : PersonScript
         head.SetParent(null);
 
         GetComponentInChildren<CamAttractor>().GameFinished();
+        FindObjectOfType<PauseScript>().FinishGame(false);
         Destroy(damagedImg.gameObject);
         Destroy(lowHealthImg.gameObject);
 
