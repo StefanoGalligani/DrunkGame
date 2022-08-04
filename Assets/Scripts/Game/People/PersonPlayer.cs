@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class PersonPlayer : PersonScript
 {
@@ -33,6 +34,10 @@ public class PersonPlayer : PersonScript
         Camera[] cams = GetComponentsInChildren<Camera>();
         cam1 = cams[0].transform;
         cam2 = cams[1].transform;
+        if (SettingsScript.sensitivity > 0.01f) {
+            GetComponent<RigidbodyFirstPersonController>().mouseLook.XSensitivity = SettingsScript.sensitivity;
+            GetComponent<RigidbodyFirstPersonController>().mouseLook.YSensitivity = SettingsScript.sensitivity;
+        }
     }
 
     private void Update() {
@@ -98,7 +103,8 @@ public class PersonPlayer : PersonScript
         health = Mathf.Min(health+points, maxHealth);
         changeAlpha(lowHealthImg, .9f - ((float)health/maxHealth));
         muffleSound((float)health/maxHealth);
-        targetAlcoholLevel = Mathf.Min(targetAlcoholLevel + alcoholPerBeer, maxAlcoholTime);
+        if (!SettingsScript.disableDoubleVision)
+            targetAlcoholLevel = Mathf.Min(targetAlcoholLevel + alcoholPerBeer, maxAlcoholTime);
     }
 
     public override void dashAfterPunch(float magnitude) {
