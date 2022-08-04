@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject barman;
     public AttacksScriptableObject[] attacks;
     public GameObject[] doors;
+    public GameObject slab;
 
     float checkWaveTimer = 2;
     int nextWave = 0;
@@ -53,7 +54,6 @@ public class GameManager : MonoBehaviour
                 }
             }
             FindObjectOfType<BeerSpawner>().respawn();
-            StartCoroutine(openDoors());
 
             nextWave++;
             if (nextWave == waves.Length) {
@@ -61,7 +61,9 @@ public class GameManager : MonoBehaviour
                     spawnedEnemies.Add(barman);
                     barman.GetComponent<PersonOther>().chasePlayer();
                 }
+                StartCoroutine(openDoors(true));
             }
+            StartCoroutine(openDoors(false));
         } else {
             win();
             checkWaveTimer = 10000;
@@ -79,13 +81,15 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<BeerTrigger>().removeFromGame();
     }
 
-    private IEnumerator openDoors() {
+    private IEnumerator openDoors(bool alsoSlab) {
         float angle = 0;
         while (angle < 90) {
             angle += Time.deltaTime * 90;
             foreach(GameObject d in doors) {
                 d.transform.localRotation = Quaternion.Euler(0, -angle, 0);
             }
+            if (alsoSlab)
+                slab.transform.localRotation = Quaternion.Euler(-angle, 0, 0);
             yield return null;
         }
         yield return new WaitForSeconds(3);
