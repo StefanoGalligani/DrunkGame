@@ -80,16 +80,22 @@ public class PersonPlayer : PersonScript
         foreach(PunchScript p in GetComponentsInChildren<PunchScript>()) {
             Destroy(p.gameObject);
         }
+
         Transform body = transform.GetChild(1);
         Transform head = transform.GetChild(0);
         body.GetComponent<Rigidbody>().useGravity = true;
         body.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        body.GetComponent<CapsuleCollider>().enabled = true;
         body.gameObject.layer = LayerMask.NameToLayer("Default");
         body.SetParent(null);
         head.GetComponent<Rigidbody>().useGravity = true;
         head.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         head.gameObject.layer = LayerMask.NameToLayer("Default");
         head.SetParent(null);
+
+        GetComponentInChildren<CamAttractor>().GameFinished();
+        Destroy(damagedImg.gameObject);
+        Destroy(lowHealthImg.gameObject);
 
         StartCoroutine(waitAndDie());
     }
@@ -136,6 +142,7 @@ public class PersonPlayer : PersonScript
     }
 
     private void changeAlpha(Image i, float a) {
+        if (!i) return;
         Color c = i.color;
         c.a = Mathf.Max(0, a);
         i.color = c;

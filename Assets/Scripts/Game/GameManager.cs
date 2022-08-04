@@ -2,6 +2,7 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.Characters.FirstPerson;
 
 [Serializable]
 public class WaveInfo {
@@ -62,9 +63,19 @@ public class GameManager : MonoBehaviour
                 }
             }
         } else {
-            Debug.Log("Won");
+            win();
             checkWaveTimer = 10000;
         }
+    }
+
+    private void win() {
+        FindObjectOfType<CamAttractor>().GameFinished();
+        Destroy(FindObjectOfType<RigidbodyFirstPersonController>());
+        Destroy(FindObjectOfType<PersonPlayer>().damagedImg.gameObject);
+        Destroy(FindObjectOfType<PersonPlayer>().lowHealthImg.gameObject);
+        Destroy(FindObjectOfType<PersonPlayer>());
+        Destroy(FindObjectOfType<PlayerAttack>());
+        FindObjectOfType<BeerTrigger>().removeFromGame();
     }
 
     private IEnumerator openDoors() {
