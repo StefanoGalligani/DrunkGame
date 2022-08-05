@@ -14,6 +14,7 @@ public class PersonOther : PersonScript
     public Texture[] clothTextures;
     public GameObject[] hairObjects;
     public Material[] hairMats;
+    public bool musician = false;
 
     [HideInInspector]
     public Vector3 idlePosition;
@@ -122,7 +123,7 @@ public class PersonOther : PersonScript
     }
 
     public void harassed(GameObject person) {
-        if (!targets.Contains(person)){
+        if (!targets.Contains(person) && !musician){
             if (Random.Range(0f,1f) < 0.5f || (gameObject.tag == "Enemy" && person.tag == "Enemy"))
                 targets.Add(person);
             else

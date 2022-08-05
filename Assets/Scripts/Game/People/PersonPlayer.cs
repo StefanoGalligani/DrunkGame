@@ -18,6 +18,7 @@ public class PersonPlayer : PersonScript
     public float syncSpeed = 3;
 
     public AudioMixer mixer;
+    public AudioMixer musicMixer;
     public AudioClip soundDamage;
     public AudioSource dmgAudioSource;
 
@@ -153,5 +154,6 @@ public class PersonPlayer : PersonScript
     private void muffleSound(float healthPerc) {
         mixer.SetFloat("pitch", Mathf.Lerp(0.5f, 1, healthPerc));
         mixer.SetFloat("cutoff", Mathf.Lerp(500, 5000, healthPerc));
+        musicMixer.SetFloat("cutoff", Mathf.Lerp(500, 5000, healthPerc));
     }
 }

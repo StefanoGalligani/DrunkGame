@@ -31,6 +31,15 @@ public class DeathState : StateMachineBehaviour
         body.SetParent(null);
         body.GetComponent<Rigidbody>().AddForce(-animator.transform.forward * 200 + animator.transform.right * 80);
 
+        if (person.GetComponent<PersonOther>().musician) {
+            Beer b = person.GetComponentInChildren<Beer>();
+            b.gameObject.layer = LayerMask.NameToLayer("Beer");
+            b.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            b.GetComponent<Rigidbody>().useGravity = true;
+            b.transform.SetParent(null);
+            person.GetComponent<Musician>().musicSource.Stop();
+        }
+
         animator.GetComponent<AudioSource>().PlayOneShot(animator.GetComponent<PersonOther>().soundDeath[Random.Range(0,3)]);
         animator.GetComponent<PersonOther>().changeFace(false);
         Destroy(animator.GetComponent<PersonOther>());

@@ -811,7 +811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6db4649ef6f30241a2cec9b98447393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 80
   soundDeath:
   - {fileID: 8300000, guid: 0d5c07db1b76d4e4c9a1f26ae365a6f7, type: 3}
   - {fileID: 8300000, guid: 2a6ec64f635e3f645b323047eed4c2fc, type: 3}
