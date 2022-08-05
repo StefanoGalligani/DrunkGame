@@ -26,6 +26,10 @@ public class MenuManager : MonoBehaviour
     public void StartGame() {
         SceneManager.LoadScene("Game");
     }
+    
+    public void StartSandbox() {
+        SceneManager.LoadScene("Sandbox");
+    }
 
     public void OpenSettings() {
         settingsPanel.SetActive(true);
