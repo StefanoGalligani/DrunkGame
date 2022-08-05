@@ -62,8 +62,9 @@ public class GameManager : MonoBehaviour
                     barman.GetComponent<PersonOther>().chasePlayer();
                 }
                 StartCoroutine(openDoors(true));
+            } else {
+                StartCoroutine(openDoors(false));
             }
-            StartCoroutine(openDoors(false));
         } else {
             win();
             checkWaveTimer = 10000;
@@ -85,15 +86,20 @@ public class GameManager : MonoBehaviour
         float angle = 0;
         while (angle < 90) {
             angle += Time.deltaTime * 90;
-            if (alsoSlab)
+            if (alsoSlab) {
                 slab.transform.localRotation = Quaternion.Euler(-angle, 0, 0);
-            else foreach(GameObject d in doors) {
-                d.transform.localRotation = Quaternion.Euler(0, -angle, 0);
+            } else {
+                foreach(GameObject d in doors) {
+                    d.transform.localRotation = Quaternion.Euler(0, -angle, 0);
+                }
             }
             yield return null;
         }
+        if (alsoSlab) {
+            slab.transform.localRotation = Quaternion.Euler(-90, 0, 0);
+        }
         yield return new WaitForSeconds(3);
-        if (!alsoSlab)
+        if (!alsoSlab) {
             while (angle > 0) {
                 angle -= Time.deltaTime * 90;
                 foreach(GameObject d in doors) {
@@ -101,8 +107,9 @@ public class GameManager : MonoBehaviour
                 }
                 yield return null;
             }
-        foreach(GameObject d in doors) {
-            d.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            foreach(GameObject d in doors) {
+                d.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            }
         }
     }
 }
