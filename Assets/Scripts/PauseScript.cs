@@ -10,6 +10,7 @@ public class PauseScript : MonoBehaviour
     public GameObject endScreen;
     public GameObject loseScreen;
     public GameObject winScreen;
+    public Musician musician;
 
     public string[] tips;
 
@@ -31,9 +32,11 @@ public class PauseScript : MonoBehaviour
             if (paused) {
                 Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.Confined;
+                if (musician) musician.musicSource.Pause();
             } else {
                 Time.timeScale = 1;
                 Cursor.lockState = CursorLockMode.Locked;
+                if (musician) musician.musicSource.UnPause();
             }
             Cursor.visible = paused;
             settingsPanel.SetActive(paused);

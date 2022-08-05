@@ -7728,6 +7728,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 787664317044808177, guid: e124e5c0a9e05fc4ea8cffdcffa122f1,
+        type: 3}
+      propertyPath: musician
+      value: 
+      objectReference: {fileID: 814838719}
     - target: {fileID: 7610758239124409314, guid: e124e5c0a9e05fc4ea8cffdcffa122f1,
         type: 3}
       propertyPath: m_Name
